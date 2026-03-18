@@ -9,6 +9,7 @@ rust-lib/target/
 # Frontend
 frontend/node_modules/
 frontend/dist/
+frontend/.vite/
 
 # Env
 .env
