@@ -54,8 +54,14 @@ export function useVault() {
 
       let userShares = 0n, userAssets = 0n, dotBal = 0n;
       if (address) {
-        [userShares, dotBal] = await Promise.all([v.balanceOf(address), dot()!.balanceOf(address)]);
-        if (userShares > 0n) userAssets = await v.convertToAssets(userShares);
+        const d = dot();
+        if (d) {
+          [userShares, dotBal] = await Promise.all([
+            v.balanceOf(address),
+            d.balanceOf(address),
+          ]);
+          if (userShares > 0n) userAssets = await v.convertToAssets(userShares);
+        }
       }
 
       setDotBalance(formatUnits(dotBal, DECIMALS));
@@ -95,6 +101,9 @@ export function useVault() {
 
   useEffect(() => {
     refresh();
+  }, [address]); // re-fetch immediately when wallet connects
+
+  useEffect(() => {
     const id = setInterval(refresh, 15_000);
     return () => clearInterval(id);
   }, [refresh]);
