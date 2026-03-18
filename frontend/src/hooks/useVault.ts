@@ -53,15 +53,15 @@ export function useVault() {
       ]);
 
       let userShares = 0n, userAssets = 0n, dotBal = 0n;
-      if (address) {
-        const d = dot();
-        if (d) {
-          [userShares, dotBal] = await Promise.all([
-            v.balanceOf(address),
-            d.balanceOf(address),
-          ]);
-          if (userShares > 0n) userAssets = await v.convertToAssets(userShares);
-        }
+      if (address && provider) {
+        const dotContract = new Contract(DOT_ADDRESS, ERC20_ABI, provider);
+        const vaultContract = new Contract(VAULT_ADDRESS, VAULT_ABI, provider);
+        [userShares, dotBal] = await Promise.all([
+          vaultContract.balanceOf(address),
+          dotContract.balanceOf(address),
+        ]);
+        console.log("dotBal raw:", dotBal.toString(), "address:", address);
+        if (userShares > 0n) userAssets = await v.convertToAssets(userShares);
       }
 
       setDotBalance(formatUnits(dotBal, DECIMALS));
