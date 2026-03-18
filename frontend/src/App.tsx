@@ -145,7 +145,7 @@ function Navigation() {
         <Link to="/" className="flex items-center group gap-2">
           <span className="text-2xl">🔮</span>
           <span className="font-serif font-bold text-2xl tracking-tighter text-text-main group-hover:text-accent-indigo transition-colors duration-300">
-            Polka<span className="italic text-accent-indigo">VaultMax</span>
+            Opti<span className="italic text-accent-indigo">Dot</span>
           </span>
         </Link>
         <div className="flex items-center gap-2">
@@ -347,7 +347,7 @@ function App() {
               <div className="flex items-center gap-2">
                 <span className="text-xl">🔮</span>
                 <span className="font-serif font-bold text-xl tracking-tighter text-text-main">
-                  Polka<span className="italic text-accent-indigo">VaultMax</span>
+                  Opti<span className="italic text-accent-indigo">Dot</span>
                 </span>
               </div>
               <p className="text-sm text-text-pale">Built for the Polkadot Solidity Hackathon — PVM Track · Powered by PolkaVM RISC-V</p>
